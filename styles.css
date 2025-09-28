@@ -22,14 +22,13 @@ html {
 
 .animation-box {
   position: absolute;
-  width: 1200px;
-  height: 900px;
+  width: 800px;
+  height: 600px;
   z-index: 2;
 }
 
-.animation-box p {
-  font-size: 200px;
-  transform: matrix(0.28, 0.28, -0.71, 0.71, 0, 0);
+.animation-box img {
+  animation: logo-anim 10s infinite;
 }
 
 h1 {
@@ -60,7 +59,27 @@ p {
   display: block;
   font-size: 2rem;
   animation: bounce 2.5s infinite;
-  transform: translateY(-5%);
+  margin-top: -10px;
+}
+
+.snap-container {
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.snap-child {
+  scroll-snap-align: center;
+}
+
+.info-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f4f4f4;
+  color: #444;
+  text-align: center;
 }
 
 @keyframes bounce {
@@ -70,5 +89,15 @@ p {
   }
   50% {
     transform: translateY(15px);
+  }
+}
+
+@keyframes logo-anim {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(5deg) scale(1.025);
   }
 }
