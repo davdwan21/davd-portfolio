@@ -98,6 +98,6 @@ p {
     transform: rotate(0deg) scale(1);
   }
   50% {
-    transform: rotate(5deg) scale(1.025);
+    transform: rotate(3deg) scale(1.05);
   }
 }
