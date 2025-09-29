@@ -2,6 +2,11 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .page-container {
   height: 100vh;
   width: 100vw;
@@ -10,7 +15,7 @@ html {
   justify-content: center;
   align-items: center;
   background-color: #222;
-  color: white;
+  color: #f4f4f4;
   text-align: center;
   position: relative;
 }
@@ -28,7 +33,7 @@ html {
 }
 
 .animation-box img {
-  animation: logo-anim 10s infinite;
+  animation: logo-anim 7.5s infinite;
 }
 
 h1 {
@@ -63,8 +68,10 @@ p {
 }
 
 .snap-container {
+  height: 100vh;
   overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
 }
 
 .snap-child {
