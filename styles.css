@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
@@ -42,6 +43,12 @@ h1 {
   font-family: Verdana, sans-serif;
 }
 
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-family: Verdana, sans-serif;
+}
+
 p {
   font-size: 1.25rem;
   font-family: Verdana, sans-serif;
@@ -53,7 +60,7 @@ p {
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  color: white;
+  color: #f4f4f4;
   font-size: 1.5rem;
   cursor: pointer;
   text-decoration: none;
@@ -87,6 +94,18 @@ p {
   background-color: #f4f4f4;
   color: #444;
   text-align: center;
+}
+
+.column-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.column {
+  flex: 1;
+  padding: 2rem;
+  width: 15rem;
+  height: 30rem;
 }
 
 @keyframes bounce {
