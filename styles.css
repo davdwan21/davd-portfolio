@@ -159,13 +159,42 @@ p {
 
 .row-container {
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .row {
+  display: flex;
+  align-items: left;
   padding: 2rem;
-  margin: 1rem;
+  width: 90vw;
+  height: 14rem;
+  justify-content: space-between;
+}
+
+.row .row-textbox {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: 20rem;
+  text-align: left;
+}
+
+.row img {
+  height: 100%;
+  border-radius: 15px;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.links {
+  height: 20vh;
+  background-color: #f4f4f4;
+  color: #222;
+  text-align: center;
+  padding: 2rem;
+}
+
+.links h3 {
+  margin-top: 0;
 }
 
 @keyframes bounce {
