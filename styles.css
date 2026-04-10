@@ -148,6 +148,8 @@ body {
   position: absolute;
   top: 3%;
   left: 5%;
+  right: 5%;
+  bottom: 8%;
   margin: 0;
   padding: 0;
   line-height: 1.2;
@@ -156,11 +158,19 @@ body {
   opacity: 0;
   transform: translateX(-100%);
   pointer-events: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .intro-box-2.slide-in {
   animation: slideInLeft 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   pointer-events: auto;
+}
+
+.intro-box-2 .text-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .ascii-box-2 {
@@ -233,8 +243,8 @@ h1 {
 h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  font-family: Verdana, sans-serif;
-  margin-top: 3rem;
+  font-family: monospace;
+  margin-top: 1rem;
 }
 
 h3 {
@@ -449,21 +459,26 @@ p {
 .options-layout {
   display: flex;
   flex-direction: row;
-  gap: 3rem;
-  align-items: flex-start;
+  gap: 4rem;
+  align-items: stretch;
+  flex: 1;
+  overflow: hidden;
 }
 
 .option-list {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  gap: 1.5rem;
-  min-width: 160px;
+  justify-content: flex-start;
+  gap: 2rem;
+  min-width: 200px;
+  align-self: flex-start;
+  margin-top: -0.5rem;
+  text-align: left;
 }
 
 .option-item {
   font-family: monospace;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   cursor: pointer;
   color: #f4f4f4;
   opacity: 0.4;
@@ -481,9 +496,7 @@ p {
 
 .option-content-area {
   position: relative;
-  min-width: 340px;
-  max-width: 480px;
-  min-height: 120px;
+  flex: 1;
   overflow: hidden;
 }
 
@@ -492,10 +505,12 @@ p {
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   opacity: 0;
   transform: translateX(60px);
   pointer-events: none;
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+  overflow-y: auto;
 }
 
 .option-panel.panel-active {

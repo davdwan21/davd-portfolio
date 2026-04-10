@@ -30,17 +30,23 @@
             </div>
             <div class="intro-box-2">
                 <div class="text-box">
-                    <h1 style="margin-bottom: 5%;">placeholder heading (projects)</h1>
+                    <h1 style="margin-bottom: 5%; text-align: left;">stuff i've worked on</h1>
+                    <!-- change text later -->
                     <div class="options-layout">
                         <div class="option-list">
-                            <span class="option-item" data-option="0">option one</span>
-                            <span class="option-item" data-option="1">option two</span>
-                            <span class="option-item" data-option="2">option three</span>
-                            <span class="option-item" data-option="3">option four</span>
-                            <span class="option-item" data-option="4">option five</span>
-                        </div>
+                            <h2>projects / awards</h2>
+                            <span class="option-item" data-option="0">🏆 inVISION</span>
+                            <span class="option-item" data-option="1">🏆 Silent Speech</span>
+                            <span class="option-item" data-option="2">🏆 Infect-ID</span>
+                            <span class="option-item" data-option="3">AHME-OS</span>
+                            <h2>experience</h2>
+                            <span class="option-item" data-option="5">🧭 AYLUS SFV - Project Manager</span>
+                            <span class="option-item" data-option="4">CSES Dev - Full-Stack Developer</span>                        </div>
                         <div class="option-content-area">
                             <div class="option-panel" data-panel="0">
+                                <p class="intro-text">placeholder paragraph for option one.<br/><br/>more placeholder text here for option one.</p>
+                                <p class="intro-text">placeholder paragraph for option one.<br/><br/>more placeholder text here for option one.</p>
+                                <p class="intro-text">placeholder paragraph for option one.<br/><br/>more placeholder text here for option one.</p>
                                 <p class="intro-text">placeholder paragraph for option one.<br/><br/>more placeholder text here for option one.</p>
                             </div>
                             <div class="option-panel" data-panel="1">
@@ -55,6 +61,9 @@
                             <div class="option-panel" data-panel="4">
                                 <p class="intro-text">placeholder paragraph for option five.<br/><br/>more placeholder text here for option five.</p>
                             </div>
+                            <div class="option-panel" data-panel="5">
+                                <p class="intro-text">placeholder paragraph for option six.<br/><br/>more placeholder text here for option six.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -66,7 +75,7 @@
             <div class="next-arrow" id="next-arrow">come have a cup of tea with me &#x2192;</div>
             <div class="intro-box-3">
                 <div class="text-box">
-                    <h1 style="margin-bottom: 5%;">placeholder heading (contact)</h1>
+                    <h1 style="margin-bottom: 5%;">a little about me</h1>
                     <p class="intro-text">
                         placeholder contact line one goes here.<br /><br />
                         placeholder contact line two goes here.<br />
@@ -186,6 +195,7 @@
       asciiBox.classList.add('slide-out-right');
 
       setTimeout(() => {
+        introBox2.style.pointerEvents = '';
         introBox2.classList.add('slide-in');
         asciiBox2.classList.add('slide-in');
         const backArrowEl = document.getElementById('back-arrow');
@@ -341,7 +351,7 @@
           introBox2.classList.remove('slide-in', 'slide-out-left');
           introBox2.style.opacity = '0';
           introBox2.style.transform = 'translateX(-100%)';
-          introBox2.style.pointerEvents = 'none';
+          introBox2.style.pointerEvents = '';
           void introBox2.offsetWidth;
           introBox2.style.opacity = '';
           introBox2.style.transform = '';
