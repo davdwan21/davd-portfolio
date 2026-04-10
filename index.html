@@ -31,14 +31,32 @@
             <div class="intro-box-2">
                 <div class="text-box">
                     <h1 style="margin-bottom: 5%;">placeholder heading (projects)</h1>
-                    <p class="intro-text">
-                        placeholder line one goes here.<br /><br />
-                        placeholder line two goes here.<br />
-                        placeholder line three goes here.<br /><br />
-                        placeholder line four goes here.<br/>
-                        placeholder line five goes here.<br/><br/>
-                        placeholder line six goes here.
-                    </p>
+                    <div class="options-layout">
+                        <div class="option-list">
+                            <span class="option-item" data-option="0">option one</span>
+                            <span class="option-item" data-option="1">option two</span>
+                            <span class="option-item" data-option="2">option three</span>
+                            <span class="option-item" data-option="3">option four</span>
+                            <span class="option-item" data-option="4">option five</span>
+                        </div>
+                        <div class="option-content-area">
+                            <div class="option-panel" data-panel="0">
+                                <p class="intro-text">placeholder paragraph for option one.<br/><br/>more placeholder text here for option one.</p>
+                            </div>
+                            <div class="option-panel" data-panel="1">
+                                <p class="intro-text">placeholder paragraph for option two.<br/><br/>more placeholder text here for option two.</p>
+                            </div>
+                            <div class="option-panel" data-panel="2">
+                                <p class="intro-text">placeholder paragraph for option three.<br/><br/>more placeholder text here for option three.</p>
+                            </div>
+                            <div class="option-panel" data-panel="3">
+                                <p class="intro-text">placeholder paragraph for option four.<br/><br/>more placeholder text here for option four.</p>
+                            </div>
+                            <div class="option-panel" data-panel="4">
+                                <p class="intro-text">placeholder paragraph for option five.<br/><br/>more placeholder text here for option five.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="ascii-box-2">
@@ -73,6 +91,63 @@
   
     <script>
     let currentPage = 1;
+    let activePanel = null;
+
+    function showPanel(idx) {
+      const panels = document.querySelectorAll('.option-panel');
+      const items = document.querySelectorAll('.option-item');
+      if (activePanel === idx) return;
+
+      if (activePanel !== null) {
+        const prev = activePanel;
+        panels[prev].classList.remove('panel-active');
+        panels[prev].classList.add('panel-exiting');
+        panels[prev].addEventListener('transitionend', function cleanup() {
+          panels[prev].classList.remove('panel-exiting');
+          panels[prev].removeEventListener('transitionend', cleanup);
+        });
+        items[prev].classList.remove('active');
+      }
+
+      activePanel = idx;
+      panels[idx].classList.remove('panel-exiting');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          panels[idx].classList.add('panel-active');
+          items[idx].classList.add('active');
+        });
+      });
+    }
+
+    function hideActivePanel() {
+      if (activePanel === null) return;
+      const panels = document.querySelectorAll('.option-panel');
+      const items = document.querySelectorAll('.option-item');
+      const prev = activePanel;
+      activePanel = null;
+      panels[prev].classList.remove('panel-active');
+      panels[prev].classList.add('panel-exiting');
+      panels[prev].addEventListener('transitionend', function cleanup() {
+        panels[prev].classList.remove('panel-exiting');
+        panels[prev].removeEventListener('transitionend', cleanup);
+      });
+      items[prev].classList.remove('active');
+    }
+
+    function resetPanels() {
+      document.querySelectorAll('.option-panel').forEach(p => {
+        p.classList.remove('panel-active', 'panel-exiting');
+      });
+      document.querySelectorAll('.option-item').forEach(i => i.classList.remove('active'));
+      activePanel = null;
+    }
+
+    document.querySelectorAll('.option-item').forEach((item, idx) => {
+      item.addEventListener('click', () => {
+        if (currentPage !== 2) return;
+        showPanel(idx);
+      });
+    });
 
     window.addEventListener("load", () => {
     setTimeout(() => {
@@ -138,6 +213,7 @@
     // Page 2 → Page 3
     document.getElementById('next-arrow').addEventListener('click', function () {
       if (currentPage !== 2) return;
+      hideActivePanel();
       const introBox2 = document.querySelector('.intro-box-2');
       const asciiBox2 = document.querySelector('.ascii-box-2');
       const introBox3 = document.querySelector('.intro-box-3');
@@ -180,6 +256,7 @@
     document.getElementById('back-arrow').addEventListener('click', function () {
       if (currentPage === 2) {
         // Page 2 → Page 1
+        hideActivePanel();
         const introBox = document.querySelector('.intro-box');
         const asciiBox = document.querySelector('.ascii-box');
         const introBox2 = document.querySelector('.intro-box-2');
@@ -269,6 +346,7 @@
           introBox2.style.opacity = '';
           introBox2.style.transform = '';
           introBox2.classList.add('slide-in');
+          resetPanels();
 
           asciiBox2.style.animation = 'none';
           asciiBox2.style.opacity = '0';

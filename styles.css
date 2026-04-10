@@ -63,7 +63,7 @@ body {
 
 .arrow-prompt {
   position: absolute;
-  left: -25%;
+  left: -40%;
   top: 60%;
 }
 
@@ -72,6 +72,7 @@ body {
   align-items: center;
   margin: 10;
   gap: 8px;
+  font-size: 1.5rem;
 }
 
 .arrow-prompt .arrow {
@@ -443,6 +444,70 @@ p {
 
 .ascii-box-3.slide-in {
   animation: slideInBottomRight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.options-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.option-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1.5rem;
+  min-width: 160px;
+}
+
+.option-item {
+  font-family: monospace;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #f4f4f4;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+  user-select: none;
+}
+
+.option-item:hover {
+  opacity: 0.8;
+}
+
+.option-item.active {
+  opacity: 1;
+}
+
+.option-content-area {
+  position: relative;
+  min-width: 340px;
+  max-width: 480px;
+  min-height: 120px;
+  overflow: hidden;
+}
+
+.option-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(60px);
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+}
+
+.option-panel.panel-active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.option-panel.panel-exiting {
+  opacity: 0;
+  transform: translateX(-40px);
+  pointer-events: none;
 }
 
 .snap-container {
