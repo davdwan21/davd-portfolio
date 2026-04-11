@@ -75,13 +75,26 @@
             <div class="next-arrow" id="next-arrow">come have a cup of tea with me &#x2192;</div>
             <div class="intro-box-3">
                 <div class="text-box">
-                    <h1 style="margin-bottom: 5%;">a little about me</h1>
-                    <p class="intro-text">
-                        placeholder contact line one goes here.<br /><br />
-                        placeholder contact line two goes here.<br />
-                        placeholder contact line three goes here.<br /><br />
-                        placeholder contact line four goes here.
-                    </p>
+                    <h1 style="margin-bottom: 5%; text-align: left;">a little about me</h1>
+                    <div class="options-layout">
+                        <div class="option-list">
+                            <h2>find me</h2>
+                            <span class="option-item-p3" data-option-p3="0">github</span>
+                            <span class="option-item-p3" data-option-p3="1">linkedin</span>
+                            <span class="option-item-p3" data-option-p3="2">resume</span>
+                        </div>
+                        <div class="option-content-area">
+                            <div class="option-panel-p3" data-panel-p3="0">
+                                <p class="intro-text">placeholder paragraph for github.<br /><br />more placeholder text here.</p>
+                            </div>
+                            <div class="option-panel-p3" data-panel-p3="1">
+                                <p class="intro-text">placeholder paragraph for linkedin.<br /><br />more placeholder text here.</p>
+                            </div>
+                            <div class="option-panel-p3" data-panel-p3="2">
+                                <p class="intro-text">placeholder paragraph for resume.<br /><br />more placeholder text here.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="ascii-box-3">
@@ -101,6 +114,7 @@
     <script>
     let currentPage = 1;
     let activePanel = null;
+    let activePanel3 = null;
 
     function showPanel(idx) {
       const panels = document.querySelectorAll('.option-panel');
@@ -158,6 +172,62 @@
       });
     });
 
+    function showPanel3(idx) {
+      const panels = document.querySelectorAll('.option-panel-p3');
+      const items = document.querySelectorAll('.option-item-p3');
+      if (activePanel3 === idx) return;
+
+      if (activePanel3 !== null) {
+        const prev = activePanel3;
+        panels[prev].classList.remove('panel-active');
+        panels[prev].classList.add('panel-exiting');
+        panels[prev].addEventListener('transitionend', function cleanup() {
+          panels[prev].classList.remove('panel-exiting');
+          panels[prev].removeEventListener('transitionend', cleanup);
+        });
+        items[prev].classList.remove('active');
+      }
+
+      activePanel3 = idx;
+      panels[idx].classList.remove('panel-exiting');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          panels[idx].classList.add('panel-active');
+          items[idx].classList.add('active');
+        });
+      });
+    }
+
+    function hideActivePanel3() {
+      if (activePanel3 === null) return;
+      const panels = document.querySelectorAll('.option-panel-p3');
+      const items = document.querySelectorAll('.option-item-p3');
+      const prev = activePanel3;
+      activePanel3 = null;
+      panels[prev].classList.remove('panel-active');
+      panels[prev].classList.add('panel-exiting');
+      panels[prev].addEventListener('transitionend', function cleanup() {
+        panels[prev].classList.remove('panel-exiting');
+        panels[prev].removeEventListener('transitionend', cleanup);
+      });
+      items[prev].classList.remove('active');
+    }
+
+    function resetPanels3() {
+      document.querySelectorAll('.option-panel-p3').forEach(p => {
+        p.classList.remove('panel-active', 'panel-exiting');
+      });
+      document.querySelectorAll('.option-item-p3').forEach(i => i.classList.remove('active'));
+      activePanel3 = null;
+    }
+
+    document.querySelectorAll('.option-item-p3').forEach((item, idx) => {
+      item.addEventListener('click', () => {
+        if (currentPage !== 3) return;
+        showPanel3(idx);
+      });
+    });
+
     window.addEventListener("load", () => {
     setTimeout(() => {
         document.getElementById("page").classList.add("open");
@@ -174,7 +244,7 @@
         .then(data => {
             document.getElementById("ascii-art-2").textContent = data;
         });
-    fetch("ascii/teapot.txt")
+    fetch("ascii/teaset.txt")
         .then(response => response.text())
         .then(data => {
             document.getElementById("ascii-art-3").textContent = data;
@@ -326,6 +396,7 @@
 
       } else if (currentPage === 3) {
         // Page 3 → Page 2
+        hideActivePanel3();
         const introBox2 = document.querySelector('.intro-box-2');
         const asciiBox2 = document.querySelector('.ascii-box-2');
         const introBox3 = document.querySelector('.intro-box-3');
@@ -377,6 +448,7 @@
           asciiBox3.style.animation = '';
           asciiBox3.style.opacity = '';
           asciiBox3.style.transform = '';
+          resetPanels3();
 
           nextArrow.classList.remove('slide-out');
           void nextArrow.offsetWidth;

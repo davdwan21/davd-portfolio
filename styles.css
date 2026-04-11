@@ -419,8 +419,10 @@ p {
 
 .intro-box-3 {
   position: absolute;
-  top: 7%;
-  left: 7%;
+  top: 3%;
+  left: 5%;
+  right: 5%;
+  bottom: 8%;
   margin: 0;
   padding: 0;
   line-height: 1.2;
@@ -429,6 +431,14 @@ p {
   opacity: 0;
   transform: translateX(-100%);
   pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.intro-box-3 .text-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .intro-box-3.slide-in {
@@ -448,7 +458,7 @@ p {
 }
 
 .ascii-3 {
-  font-size: 10px;
+  font-size: 3px;
   color: #f4f4f4;
 }
 
@@ -534,4 +544,47 @@ p {
 
 .snap-child {
   scroll-snap-align: center;
+}
+
+.option-item-p3 {
+  font-family: monospace;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #f4f4f4;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+  user-select: none;
+}
+
+.option-item-p3:hover {
+  opacity: 0.8;
+}
+
+.option-item-p3.active {
+  opacity: 1;
+}
+
+.option-panel-p3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(60px);
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+  overflow-y: auto;
+}
+
+.option-panel-p3.panel-active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.option-panel-p3.panel-exiting {
+  opacity: 0;
+  transform: translateX(-40px);
+  pointer-events: none;
 }
