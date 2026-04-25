@@ -220,7 +220,7 @@ a {
   position: absolute;
   font-size: 125px;
   left: -10%;
-  top: -30%;
+  top: -25%;
   animation: bracketBounce 5s ease-in-out infinite;
 }
 
